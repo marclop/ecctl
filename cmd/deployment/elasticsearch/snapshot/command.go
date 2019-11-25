@@ -15,32 +15,18 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package cmdelasticsearch
+package cmdelasticsearchsnapshot
 
 import (
 	"github.com/spf13/cobra"
-
-	cmdelasticsearchinstances "github.com/elastic/ecctl/cmd/deployment/elasticsearch/instances"
-	cmdelasticsearchmonitoring "github.com/elastic/ecctl/cmd/deployment/elasticsearch/monitoring"
-	cmdelasticsearchplan "github.com/elastic/ecctl/cmd/deployment/elasticsearch/plan"
-	cmdelasticsearchsnapshot "github.com/elastic/ecctl/cmd/deployment/elasticsearch/snapshot"
 )
 
-// Command defines the elasticsearch subcommand
+// Command is the elasticsearch snapshot command
 var Command = &cobra.Command{
-	Use:     "elasticsearch",
-	Short:   "Manages Elasticsearch clusters",
-	PreRunE: cobra.MaximumNArgs(0),
-	Run: func(cmd *cobra.Command, args []string) {
-		cmd.Help()
+	Use:     `snapshot`,
+	Short:   "Manages an Elasticsearch cluster's snapshot settings",
+	PreRunE: cobra.NoArgs,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
 	},
-}
-
-func init() {
-	Command.AddCommand(
-		cmdelasticsearchmonitoring.Command,
-		cmdelasticsearchplan.Command,
-		cmdelasticsearchinstances.Command,
-		cmdelasticsearchsnapshot.Command,
-	)
 }
